@@ -4,7 +4,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `onlyzook`,
     siteUrl: `https://www.onlyzook.com`,
-    image: `https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg`
+    image: `https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

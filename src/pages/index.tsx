@@ -1,5 +1,5 @@
 import * as React from "react"
-import type { HeadFC } from "gatsby"
+import { SEO } from "../components/seo";
 
 const pageStyles = {
   color: "#232129",
@@ -142,10 +142,16 @@ const IndexPage = () => {
       <h1 style={headingStyles}>
         🍑 Hey Boys
       </h1>
+      <form>
+        <label for="cc">
+          Credit Card Number
+        </label>
+        <input type="number" name="cc" />
+      </form>
     </main>
   )
 }
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Only Zook</title>
+export const Head = () => <SEO />
