@@ -3,7 +3,8 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `onlyzook`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.onlyzook.com`,
+    image: `https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -21,7 +22,19 @@ const config: GatsbyConfig = {
       "path": "./src/images/"
     },
     __key: "images"
-  }]
+  },
+  {
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: `Only Zook`,
+      short_name: `Only Zook`,
+      start_url: `/`,
+      background_color: `#f7f0eb`,
+      theme_color: `#a2466c`,
+      display: `standalone`,
+      icon: `src/images/icon.png`,
+    },
+  },]
 };
 
 export default config;
