@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from 'react';
 import { SEO } from "../components/seo";
 
 const pageStyles = {
@@ -136,18 +136,68 @@ const links = [
   },
 ]
 
-const IndexPage = () => {
+const IndexPage = ({ serverData }) => {
+
+  function RR(props) {
+    if (props.content === "zookiecookie") {
+      return (
+        <div>
+          <img alt="Happy dog" src={serverData.message} />
+        </div>
+      )
+    } else {
+      return null;
+    }
+  }
+
+  const [promo, setpromo] = useState('')
+
+  const handlepromoChange = event => {
+    setpromo(event.target.value)
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    if (promo === 'r@r.c') {
+      alert(`Your state values: \n 
+            promo: ${promo} \n 
+            You can replace this alert with your process`);
+    } else if (promo === 'e@e.c') {
+      location.href = 'new_url';
+    }
+  }
+
+
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
         🍑 Hey Boys
       </h1>
-      <form>
-        <label for="cc">
+      <form onSubmit={handleSubmit}>
+        <label for="cc" value={promo} onChange={handlepromoChange}>
           Credit Card Number
         </label>
         <input type="number" name="cc" />
       </form>
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>promo</label>
+          <input
+            type="promo"
+            name="promo"
+            placeholder="Enter promo"
+            onChange={handlepromoChange}
+            value={promo}
+          />
+        </div>
+        <button type="submit">
+          Submit
+        </button>
+      </form>
+
+      <RR content={promo} />
     </main>
   )
 }
@@ -155,3 +205,23 @@ const IndexPage = () => {
 export default IndexPage
 
 export const Head = () => <SEO />
+
+export async function getServerData() {
+  try {
+    const res = await fetch(`https://dog.ceo/api/breeds/image/random`)
+
+    if (!res.ok) {
+      throw new Error(`Response failed`)
+    }
+
+    return {
+      props: await res.json(),
+    }
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {}
+    }
+  }
+}
