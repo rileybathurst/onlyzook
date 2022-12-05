@@ -34,7 +34,25 @@ const config: GatsbyConfig = {
       display: `standalone`,
       icon: `src/images/icon.png`,
     },
-  },]
+  },
+  {
+    resolve: `gatsby-plugin-csp`,
+    options: {
+      mergeSecurityHeaders: true, // ? testing june 18 2022 csp issue // boolean to turn off the default security headers
+      mergeScriptHashes: false, // you can disable scripts sha256 hashes
+      mergeStyleHashes: false, // you can disable styles sha256 hashes
+      directives: {
+        "image-src": "'self' https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg",
+        "script-src": "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com https://d3ey4dbjkt2f6s.cloudfront.net/",
+        "style-src": "'self' 'unsafe-inline' use.typekit.net https://d3ey4dbjkt2f6s.cloudfront.net/",
+        "font-src": "'self' 'unsafe-inline' use.typekit.net data:",
+        "img-src": "'self' p.typekit.net https://www.google-analytics.com data: about:", // I think use.typekit.net is a tracking pixel
+        "connect-src": "'self' data:  https://www.google-analytics.com/"
+        // you can add your directives or override defaults
+      }
+    }
+  },
+]
 };
 
 export default config;

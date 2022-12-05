@@ -140,12 +140,30 @@ const IndexPage = ({ serverData }) => {
 
   function RR(props) {
     if (props.content === "zookiecookie") {
+      // console.log(serverData);
+
+      const imageUrl = "https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg";
+
+      fetch(imageUrl)
+        .then(response => response.blob())
+        .then(imageBlob => {
+          // Then create a local URL for that image and print it 
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          console.log(imageObjectURL);
+        });
+
       return (
         <div>
-          <img alt="Happy dog" src={serverData.message} />
+          <img alt="Happy dog" src={serverData} />
         </div>
       )
     } else {
+
+
+
+
+
+
       return null;
     }
   }
@@ -208,14 +226,16 @@ export const Head = () => <SEO />
 
 export async function getServerData() {
   try {
-    const res = await fetch(`https://dog.ceo/api/breeds/image/random`)
+    const res = await fetch(`https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg`)
+
+    console.log(res);
 
     if (!res.ok) {
       throw new Error(`Response failed`)
     }
 
     return {
-      props: await res.json(),
+      props: await res,
     }
   } catch (error) {
     return {
