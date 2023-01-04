@@ -183,6 +183,8 @@ const IndexPage = ({ serverData }) => {
             You can replace this alert with your process`);
     } else if (promo === 'e@e.c') {
       location.href = 'new_url';
+    } else if (promo === 'wisdom') {
+      location.href = '/tonys10';
     }
   }
 
