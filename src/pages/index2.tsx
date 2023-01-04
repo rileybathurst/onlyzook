@@ -135,7 +135,7 @@ const links = [
   },
 ]
 
-const Index2Page = ({ serverData }) => {
+const Index2Page = () => {
 
   const [promo, setpromo] = useState('')
 
@@ -186,7 +186,6 @@ const Index2Page = ({ serverData }) => {
         </button>
       </form>
 
-      <RR content={promo} />
     </main>
   )
 }
