@@ -137,6 +137,12 @@ const links = [
 
 const Index2Page = ({ serverData }) => {
 
+  const [promo, setpromo] = useState('')
+
+  const handlepromoChange = event => {
+    setpromo(event.target.value)
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
 
