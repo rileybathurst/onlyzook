@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { SEO } from "../components/seo";
 
 const pageStyles = {
   color: "#232129",
@@ -138,42 +137,6 @@ const links = [
 
 const Index2Page = ({ serverData }) => {
 
-  function RR(props) {
-    if (props.content === "zookiecookie") {
-      // console.log(serverData);
-
-      const imageUrl = "https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg";
-
-      fetch(imageUrl)
-        .then(response => response.blob())
-        .then(imageBlob => {
-          // Then create a local URL for that image and print it 
-          const imageObjectURL = URL.createObjectURL(imageBlob);
-          console.log(imageObjectURL);
-        });
-
-      return (
-        <div>
-          <img alt="Happy dog" src={serverData} />
-        </div>
-      )
-    } else {
-
-
-
-
-
-
-      return null;
-    }
-  }
-
-  const [promo, setpromo] = useState('')
-
-  const handlepromoChange = event => {
-    setpromo(event.target.value)
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -223,27 +186,3 @@ const Index2Page = ({ serverData }) => {
 }
 
 export default Index2Page
-
-export const Head = () => <SEO />
-
-export async function getServerData() {
-  try {
-    const res = await fetch(`https://onlyzook.s3.us-west-1.amazonaws.com/onlyzook-og_image.jpg`)
-
-    console.log(res);
-
-    if (!res.ok) {
-      throw new Error(`Response failed`)
-    }
-
-    return {
-      props: await res,
-    }
-  } catch (error) {
-    return {
-      status: 500,
-      headers: {},
-      props: {}
-    }
-  }
-}
